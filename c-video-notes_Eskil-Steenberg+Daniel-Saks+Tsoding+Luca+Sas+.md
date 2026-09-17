@@ -1,18 +1,27 @@
-### source: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/videos.org#L79
+#### source: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/videos.org#L79
 
+---
 
 - Channel. https://www.youtube.com/@antirez/videos
 - Channel: https://www.youtube.com/@Mr4thProgramming/videos
+
 - 15 | Advice for Writing Small Programs in C  https://www.youtube.com/watch?v=eAhWIO1Ra6M
 - tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
-* 16 | How I program C                        | Eskil Steenberg
+
+---
+## 16 | How I program C | Eskil Steenberg
+
 00:53:00
+
 - video https://www.youtube.com/watch?v=443UNeGrFoM
 - uses c89, c99 is too new and broken (fixed on c11)
 - does NOT use: goto, register, do, continue, auto, volatile
 - "ambiguity is the enemy" - in reference to having a programming language that does a thing in 2 lines of code
-** Timestamps
- 0:00  intro
+
+**Timestamps**
+ 
+```
+0:00  intro 
 5:00  garbage collection is not suitable for high performance scenarios
 6:20  prefer stable & concise language features & technology stack
 8:25  avoid ambiguity
@@ -50,7 +59,8 @@
 2:08:50  Carmack's fast square root algorithm
 2:09:56  magical random number generator
 2:10:30  closing
-** About C++
+```
+**About C++**
   - it tries to be clever
   - It tries to hide things, not explicit
   - which is the root of all evil
@@ -62,28 +72,55 @@
       eg: what happens when on an add(X,Y) defined on same types. I mix different types?
       where I could have used =addf()=, (ME: like in ocaml)
     - ~on js: undefined field on an object~ the compiler won't complain, it will just return undefined(?)
-** words used for naming things
+
+**words used for naming things**
+
   - handle, pointer to opaqe data structure
   - func, funtion pointer OR function used as function pointer
   - internal, function internal to a module
-** long functions are good
+
+**long functions are good**
+
   - have more code that "does something"
   - instead of code that handles code
-** a swedish fighter jet's code has only 1 main(), that calls functions and those functions NEVER call anything else
+
+**a swedish fighter jet's code has only 1 main(), that calls functions and those functions NEVER call anything else**
   - reduces indirection
-** naming
+
+**Naming and import("includeing") files**: 
+> Start from outside and go in:
+
   - Have long names, wide code is better, more descriptive
   - words that complement each other: create/destroy, load,unload
   - use:
     - object_action()
     - module_object_action()
-  - files
-    - s_draw_font.c
-      s_draw_internal.h
-      s_widget_buttons.c
-      s_widgtet_sliders.c
-      seduce.h
-** OO in C
+  - files:
+```
+
++ Seduce example// Directory: Contains all files that this API has, all started with s_(seduce). 
+  |--- .
+  |--- ..   
+  |--- s_draw_framebuffer.c
+  |--- s_draw_new.c
+  |--- s_draw_primitive.c
+  |--- s_draw.c
+  |--- s_draw_internal.h // _INTERNAL.H: file that contains something that you want to communicate within this module, and that external code shouldn't know about.
+  |
+  |--- s_widget_radial.c
+  |--- s_widget_visualizers.c
+  |--- s_widget_visualizers_internal.h // _INTERNAL.H: file that contains something that you want to communicate within this module, and that external code shouldn't know about.
+  |--- s_widget.c
+  |
+  |--- s_text_widget.c
+  |--- s_text_select.c
+  |--- s_text.c
+  |
+  +--- seduce.h  // EXTERNAL FILE INTERFACE - just one .h file that has loads of functionalities that are defined/implemented in the .c files.
+```
+
+**OO in C**
+
 - other languages try to fool that it is something that has both code and data in it
   which is not true on modern systems (aka separate memory spaces)
 - object_create()
@@ -100,7 +137,9 @@
         // ...
       } RShader;
     #+end_src
-** Macros 00:50:00
+
+**Macros 00:50:00**
+
 - Doesn't like them
 - One reason to use them is to duplicate A LOT of code for different types
   - still screws the error messages
@@ -142,20 +181,23 @@
     header h;
     data d[]; // THIS
   }
-* 21 | Checking out raylib                    | Tsoding
+
+---
+
+## 21 | Checking out raylib | Tsoding
 
 https://www.youtube.com/watch?v=fHojJ9Nxb0E
 
- 03:22:00 START
+03:22:00 START
 
 - is like an engine as a library
 - a zero initialized structure, is a convention that should be handled
   by the functions handling them
   = {0}
 
-** Example: minimal example
+**Example: minimal example**
 
-#+begin_src c
+```c
   #include "raylib.h"
   #define SCREEN_WIDTH 800
   #define SCREEN_HEIGHT 600
@@ -168,10 +210,15 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
     }
     return 0;
   }
-#+end_src
 
-* 21 | Modern C and What We Can Learn From It | Luca Sas
-   https://www.youtube.com/watch?v=QpAhX-gsHMs
+```
+
+---
+
+## 21 | Modern C and What We Can Learn From It | Luca Sas
+
+  https://www.youtube.com/watch?v=QpAhX-gsHMs
+
 - WG14 Standarization Group https://www.open-std.org/jtc1/sc22/wg14/
 - designated initializers, initialize everything else to 0
 - header macro to differentiate between c++ and c
@@ -179,31 +226,35 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
 - Instead using malloc/fopen ask for allocators iocallbacks
 - static_assert()
 - Example: using sokol gfx, we describe a pipeline, we initialize the others to 0/default
-  #+begin_src c
-    sg_pipeline_desc pip_desc = {
-      .layout = {
-        .buffers[0].stride = 28,
-        .attrs = {
-          [ATTR_vs_position].format = SG_VERTEXFORMAT_FLOAT3,
-          [ATTR_vs_color0].format   = SG_VERTEXFORMAT_FLOAT4
-        }
-      },
-      .shared = shd,
-      .index_type = SG_INDEXTYPE_UINT16,
-      .depth_stencil = {
-        .depth_compare_func = SG_COMPAREFUNC_LESS_EQUAL,
-        .depth_write_enagled = true,
+  
+```c
+  sg_pipeline_desc pip_desc = {
+    .layout = {
+      .buffers[0].stride = 28,
+      .attrs = {
+        [ATTR_vs_position].format = SG_VERTEXFORMAT_FLOAT3,
+        [ATTR_vs_color0].format   = SG_VERTEXFORMAT_FLOAT4
       }
-      .rasterizer.cull_mode = SG_CULLMODE_BACK,
-      .rasterizer.sample_count = SAMPLE_COUNT,
-      .label = "cube-pipeline"
-    };
-  #+end_src
+    },
+    .shared = shd,
+    .index_type = SG_INDEXTYPE_UINT16,
+    .depth_stencil = {
+      .depth_compare_func = SG_COMPAREFUNC_LESS_EQUAL,
+      .depth_write_enagled = true,
+    }
+    .rasterizer.cull_mode = SG_CULLMODE_BACK,
+    .rasterizer.sample_count = SAMPLE_COUNT,
+    .label = "cube-pipeline"
+  };
+
+```
+
 - C11 =_Generic= and Overloading
   #define min(a,b) _Generic((a), float. minf(a,b), int: mini(a,b))
 - C11 atomics, thread_local
 - defer macro
-  #+begin_src c
+
+```c
     #define macro_var(name) concat(name, __LINE__)
     #define defer(start,end) for (     \
        int macro_var(_i_) = (start,0); \
@@ -219,17 +270,19 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
     {
       ...
     }
-  #+end_src
+```
+
 - scope macro
-  #+begin_src c
+```c
     file_handle_t file = file_open(filename, file_mode_read);
     scope(file_close(file))
     {
       ...
     }
-  #+end_src
+```
+
 - Unions: We can refer to the same thing in different ways
-  #+begin_src c
+```c
     typedef union hmm_vec2
     {
       struct { float X, Y; };
@@ -238,11 +291,18 @@ https://www.youtube.com/watch?v=fHojJ9Nxb0E
       struct { float Width, Height; };
       float Elements[2];
     } hmm_vec2;
-  #+end_src
+```
+
 - Error: return a struct with a *valid* field
-* 21 | Searching duplicate files with C       | Tsoding
+
+---
+
+## 21 | Searching duplicate files with C | Tsoding
+
 00:53:00
+
 https://www.youtube.com/watch?v=bpCJf67e1lI
+
 - Task: Hashing each file
 - you can use "(void) varname" to silence warning of unused variable.
 - #include <dirent.h>
@@ -253,34 +313,42 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
 - we ignore "." and ".."
   if ((strcmp(ent->d_name, ".") != 0) && strcmp(ent->d_name, "..") != 0)
 - string literals are null terminated
-  #+begin_src c
+
+```c
     #define PATH_SEP "/" // string literals come with the null termitor character
     #define PATH_SEP_LEN (sizeof(PATH_SEP) - 1)
-  #+end_src
+```
+
 - join_path function, a very c way to append strings with =malloc/memcpy= and pointer adding
-  #+begin_src c
-    char *join_path(const char *base, const char *file) {
-      size_t base_len = strlen(base);
-      size_t file_len = strlen(file);
 
-      char *begin = malloc(base_len + file_len + PATH_SEP_LEN + 1);
-      assert(begin != NULL);
+```c
+  char *join_path(const char *base, const char *file) {
+    size_t base_len = strlen(base);
+    size_t file_len = strlen(file);
 
-      char *end = begin;
-      memcpy(end, base, base_len);
-      end += base_len;
-      memcpy(end, PATH_SEP, PATH_SEP_LEN);
-      end += PATH_SEP_LEN;
-      memcpy(end, file, file_len);
-      end += file_len;
-      *end = '\0';
+    char *begin = malloc(base_len + file_len + PATH_SEP_LEN + 1);
+    assert(begin != NULL);
 
-      return begin;
-    }
-  #+end_src
+    char *end = begin;
+    memcpy(end, base, base_len);
+    end += base_len;
+    memcpy(end, PATH_SEP, PATH_SEP_LEN);
+    end += PATH_SEP_LEN;
+    memcpy(end, file, file_len);
+    end += file_len;
+    *end = '\0';
+
+    return begin;
+  }
+```
+
 - to be able to perform an action on each file, WITHOUT interacting with the recursion of readdir()
   we creates a wrapper API struct that keep an array of DIR* around
-* 21 | Using C instead of Bash                | Tsoding
+
+---
+
+## 21 | Using C instead of Bash | Tsoding
+
 - =fopen()= returns NULL on error
 - =fclose()=
 - =fprintf= (SINK,STRING)
@@ -312,15 +380,21 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
   > run
   > tui enable
   > n
-* 21 | Minicel                                | Tsoding
-** TODO 1 https://www.youtube.com/watch?v=HCAgvKQDJng
+
+---
+
+## 21 | Minicel | Tsoding
+
+**TODO 1 https://www.youtube.com/watch?v=HCAgvKQDJng**
+
 01:26:00
 - uses ~size_t~ for anything related to array indices
 - Implementation of C++'s StringView in C https://github.com/tsoding/sv
 - fwrite()
 - fread() reads elements, not bytes
 - using =goto= to return an error, a way to imitate part of Go's "defer"
-  #+begin_src c
+
+```c
     char* slurp_file(const char *file_path, size_t *size) {
       FILE *f = fopen(file_path, "rb");
       char *buffer = NULL;
@@ -348,20 +422,24 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
       if (buffer) free(buffer);
       return NULL;
     }
-  #+end_src
+```
+
 - reading a whole file into a string
   - stat() is not windows portable
   - ftell - to take the value of the cursor
     fseek - to put the cursor to the end of the file
 - suffixing ~union~ with _As, AND naming the structure field ~as~, makes it so code will look like this
-  #+begin_src c
+
+```c
   Cell.as.text;
   Cell.as.number;
   Cell.as.expr;
-  #+end_src
+```
+
 - When creating unions, make sure that a ~zero initialization~ ({0} or memset()) still gives a valid results for all cases
 - using *unions*, *enums* and *structs* together
-  #+begin_src c
+
+```c
     typedef enum {
       CELL_KIND_TEXT = 0,
       CELL_KIND_NUMBER,
@@ -378,23 +456,28 @@ https://www.youtube.com/watch?v=bpCJf67e1lI
       Cell_Kind kind;
       Cell_As as;
     } Cell;
-  #+end_src
+```
+
 - using *macros* to unpack, a hex color (#0xFFAABBCC) into 4 arguments
-  #+begin_src c
+
+```c
     #define UNHEX(c) \
       ((c >> 8 * 0) & 0xFF), \
       ((c >> 8 * 1) & 0xFF), \
       ((c >> 8 * 2) & 0xFF), \
       ((c >> 8 * 3) & 0xFF), \
-  #+end_src
+```
+
 - using *macros* to format
-  #+begin_src c
+
+```c
     typedef struct {
       int x, y;
     } Vec2;
 
     #define V2_Fmt "(%d, %d)"
     #define V2_Arg(v) v.x, v.y
-  #+end_src
+```
+
 - strtod() - string to double
-  strtof() - string to float
+- strtof() - string to float

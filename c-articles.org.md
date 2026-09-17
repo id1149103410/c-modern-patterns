@@ -1,4 +1,6 @@
-### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/articles.org
+#### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/articles.org
+
+---
 
 - https://sqlite.org/whyc.html
 - 11 Object-oriented design patterns in the kernel, part 1 https://lwn.net/Articles/444910/

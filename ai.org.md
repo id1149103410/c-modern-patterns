@@ -1,0 +1,271 @@
+- deep learning https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8
+- https://github.com/AudioLLMs/AudioLLM
+- Course: zero to neural networks https://www.youtube.com/@datacorelinux/videos
+- https://microsoft.github.io/generative-ai-for-beginners/#/
+- books https://github.com/aridiosilva/AI_Books/
+- https://uvadlc-notebooks.readthedocs.io/en/latest/index.html
+- Course: Neural Networks https://karpathy.ai/zero-to-hero.html
+  - Neural Networks: Zero to Hero  https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ
+- Video:  How to Create a Neural Network (and Train it to Identify Doodles)
+  https://www.youtube.com/watch?v=hfMk-kjRv4c
+- MIT 6.S191 Introduction to Deep Learning https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI
+- MIT Self Driving Lectures https://www.youtube.com/playlist?list=PLrAXtmErZgOeY0lkVCIVafdGFOTi45amq
+- https://stackoverflow.blog/2022/04/21/the-robots-are-coming-for-the-boring-parts-of-your-job/?cb=1
+- Standford Machine Learning Andrew NG https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU&index=1
+- Course: 2020 Cornell CS 5787: Applied Machine Learning.
+  https://www.youtube.com/playlist?list=PL2UML_KCiC0UlY7iCQDSiGDMovaupqc83
+- NN https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
+- MIT RES.LL-005 Mathematics of Big Data and Machine Learning, IAP 2020
+  https://www.youtube.com/watch?v=t4K6lney7Zw
+- Video: Information Thoery, Pattern Recognition, and Neural Networks
+  https://www.youtube.com/playlist?list=PLruBu5BI5n4aFpG32iMbdWoRVAA-Vcso6
+- https://www.youtube.com/user/mathematicalmonk/videos
+- Video Channel
+  https://www.youtube.com/c/ShashankKalanithiData/videos
+- Video: Conal Elliott: Can Tensor Programming Be Liberated from the Fortran Data Paradigm?
+  https://www.youtube.com/watch?v=oaIMMclGuog
+  https://github.com/conal/talk-2021-can-tensor-programming-be-liberated
+- Deep Learning Book Lectures https://www.youtube.com/c/AlenaKruchkova/videos
+- MIT http://introtodeeplearning.com/
+  https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI
+- (Welch Labs) Neural Networks Demystified https://www.youtube.com/playlist?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU
+- http://karpathy.github.io/neuralnets/
+- Andrew Ng https://www.coursera.org/learn/machine-learning
+- CS231n: Convolutional Neural Networks for Visual Recognition http://vision.stanford.edu/teaching/cs231n/
+- https://twitter.com/cfiesler/status/1336317217034612737
+  Algorithms of Oppresion
+  The Age of Surveillance Capitalism
+  Race After Technology
+  Weapons of Math Destruction
+  Automating Inequality
+  Technically Wrong
+  Ghost Work
+  Design Justice
+- https://ml4code.github.io/papers.html
+- https://medium.com/@satnalikamayank12/on-automated-generation-of-commit-messages-from-code-differences-7ab205ae580
+- Deeplearning - Udacity - https://www.youtube.com/playlist?list=PLAwxTw4SYaPn_OWPFT9ulXLuQrImzHfOV
+- https://www.edx.org/course/artificial-intelligence-for-everyone?source=aw&awc=6798_1596893433_4b4c0888ce9c6d92a5a2ae929d88d9c7&utm_source=aw&utm_medium=affiliate_partner&utm_content=text-link&utm_term=301045_https%3A%2F%2Fwww.class-central.com%2F
+- [Coursera] Neural Networks for Machine Learning — Geoffrey Hinton
+  https://www.youtube.com/playlist?list=PLoRl3Ht4JOcdU872GhiYWf6jwrk_SNhz9
+- Vincent Warmerdam: Winning with Simple, even Linear, Models | PyData London 2018
+  https://www.youtube.com/watch?v=68ABAU_V8qI
+- https://github.com/mrdbourke/machine-learning-roadmap
+- https://github.com/visenger/awesome-mlops
+- CS50's Introduction to Artificial Intelligence with Python 2020
+  https://www.youtube.com/playlist?list=PLhQjrBD2T382Nz7z1AEXmioc27axa19Kv
+- NARDOZ MARZO - Fairness en Machine Learning + Testing en desarrollo de software
+  https://www.youtube.com/watch?v=rrwrornKhjM
+- https://github.com/mitmath/18337
+- Toward ethical, transparent and fair AI/ML:
+  a critical reading list for engineers, designers, and policy makers
+  https://github.com/rockita/criticalML
+- https://www.youtube.com/playlist?list=PLl8OlHZGYOQ7bkVbuRthEsaLr7bONzbXS
+* Channels
+- Will Kwan https://www.youtube.com/c/WillKwan/videos
+- Instituto de Calculo Secretaria https://www.youtube.com/channel/UCzcbeaNQEIhOFBRBdYx1NEA
+- https://www.youtube.com/c/SirajRaval/videos
+- https://www.youtube.com/c/YannicKilcher/videos
+- https://www.youtube.com/user/MinisterioDeCiencia/videos
+- https://www.youtube.com/channel/UCfxnrdBM1YRV9j2MB8aiy4Q
+* Video: Practical Deep Learning for Coders (2020)
+https://www.youtube.com/playlist?list=PLfYUBJiXbdtRL3FMB3GoWHRI8ieU6FhfM
+** Lesson 1 https://www.youtube.com/watch?v=_QUEXsHfsA0
+- Neural networks have limited range of things it can do with 1 layer (by Minsky research)
+- But with more layers the problem is solved (also by minsky)
+- People used just 2 layers which limited performance
+- Usinge more layers makes it "DEEP" learning
+
+* Video: 2011 - Machine Learning for the Web - Hilary Mason
+** 1 Introduction
+- Classification problems:
+  - Clustering of categorical data
+  - Named Entity Disambiguation: separate different entities (similar)
+- Recommendation systems
+- Special data (uses domain knowledge)
+  - Geographic
+  - Timeseries
+- Approaches from:
+  - Having data
+  - Having a problem
+  - Have infrastructure
+- Methodology:
+  1) Obtain
+  2) Scrub
+  3) Explore
+  4) Model
+  5) Interpret
+** 2 Classifying Web Documents - The Theory
+- Problems harder to classify (write logic)
+- Supervised learning
+  - Examples:
+    - SPAM classification
+    - language identification
+    - Face detection
+- Book: "Data Source Handbook"
+- NYT has <meta> tags with information about the article.
+
+* Book: 2019 | Neural Networks for Electronics Hobbyists | Richard McKeon
+** Preface
+- "Illustrates how ~back propagation~ can be
+     used to adjust connection strengths or ~weights~ and train a network."
+- "We do this manually adjusting potentiometers in the ~hidden layer~"
+- Train a model VS Writing a Program
+- Going back to figure out *how* a neural network resolved a problem is called ~feature extraction~ delving deep into the ~hidden layers~
+** Chapter 1 - Biological Neural Networks
+- 44billion neurons in the human brain, and each is connected to thousands
+- Neurons Parts:
+  * Dendrites: branches, *receive* impulses from other neurons
+  * Cell Body: core, *adds* the signals and determines what to do next,
+               enough stimulation sends a pulse to the axon
+  * Axon: tail, *connects* to other neurons
+- Spoilers: Weights, activation potentials, transfer functions
+- ~Synapse~: The gap between neurons
+  ~Neurotransmitters~: chemical messangers send by neurons
+- Sometimes learning just happens
+- ~Biomimicry~ inspire solutions from nature
+- Software: Steps in training
+  1) Produce the result based on the inputs
+  2) Check the result against the correct answer we provided.
+  3) Adjust connection strenghts between neurons to improve results
+  4) Repeat, until errors get really small for all possible inputs
+- Hardware: Input Layer, Hidden Layer, Output Layer
+** Chapter 2 - Implementing Neural Networks
+- We train the NN and we build it in ways for it to
+  make adjustments and "learn" to solve the problem
+- Artificial Neurons
+  1) Inputs
+  2) Weight Adjustments
+  3) Summation
+  4) Transfer Function
+  5) Output (for our purposed, it will be a simple yes/no)
+- Type of NN used in the book:
+  "feed forward" using "back propagation" as the training algorithm
+- Feed Forward: signals are sent only in the forward direction
+- "Backpropagation of errors": if someone is contributing to a wrong answer, he needs to have is input reduced
+- Project will be the "XOR problem", and we will use a 3 layer NN
+  - 2 inputs
+  - 2 Neurons in the hidden layer
+  - 1 output
+- Input Layer: like our senses
+- Hidden Layer: No connection to the outside world.
+- Output Layer: Can be ON or OFF. Or return several outputs.
+- Photo of the finish project (what can I see)
+  - 7x potentiometer with tips switches
+  - 3x 555 IC?, 2 before and 1 after the output layer
+  - 2x Transistors near the power source
+  - 2x 9v batteries
+  - Leds for input/output layers
+** Chapter 3 - Electronic Components
+- Inclusive OR vs exclusive (X)OR
+  - In real life we can use XOR too, ex: we either go to the mountains or the beach
+- XOR is ~nonlinear~, meaning an input can result in different values, depending of what the other inputs are doing
+- -5V The logic value 0 (false)
+  +5V The logic value 1 (true)
+- Components
+  * Breadboard/Protoboard
+  * 22 AWG Solid (not stranded) wire
+  * 2x 9v batteries
+    - Bipolar Power Supply: +5V, -5V, and ground
+    - To have both ~excitatory~ and ~inhibitory~ neurons
+  * Voltage regulators, to have a solid/stable voltage
+    * 1x +5V regulator (7805)
+    * 1x -5V regulator (7905)
+  * SPDT - Single Pole Double Throw
+    3 Pines, two pins connected at the time.
+    Of the sliding type.
+    We would pick between +5V and -5V
+  * ?x 470ohm resistors (for the led)
+  * Led: Anode (+) and Cathode(- aka shorter leg)
+  * 10-turn potentiometers: 100K
+  * CA3130 op amps, simulate the neurons
+    - Tie + and - rails
+    - ~activation threshold~ PIN to two-resistor voltage divider
+    - ~input~ the output of the summing circuit
+- ~Voltage divider~, when a voltage is dropped due resistors between terminals of a power supply
+  - 1 resistor can't be measure
+  - 2 resistor IF equal half the voltage
+  - 1 potentiometer
+- We use a ~passive averager~, a type of voltage divider
+  If the resistors are the same value:
+  - Vout = (V1+V2)/2
+  - Vout = (V1+V2+V3)/3
+  - See neuron's ~threshold value~ and ~transfer function~
+- Op amps usage, as a comparator:
+  - If 3>2, output will be HIGH
+  - if 3<2, output will be LOW
+- There is a *Neuron Y* called ~inhibitory~ neuron
+** Chapter 4 - Building the Network
+- Cables Color
+  * Red   +5V
+  * Black GND
+  * Blue  -5V
+  * Yellow for signals
+- Input Layer
+  - 2x switches
+  - 2x 470ohm
+  - 2x led
+- Hidden Layer
+  - 2x Op amps
+    - Threshold: Constant Voltage divider between 100K and 22K, from +V and GND
+    - Input: Variable Passive Averager from both inputs layer neurons
+- Output Layer
+  - Same as a Neuron in Hidden
+  - a LED to the output
+** Chapter 5 - Training with Back Propagation
+* Book: 2019 | Grokking Deep Learning                    | Andrew W. Trask
+https://github.com/iamtrask/Grokking-Deep-Learning
+* Book: 2021 | Loving Common Lisp                        | Mark Watson
+** Backpropagation Neural Networks
+- Trained by  applying training inputs to the networks
+- Compare differences/errors between
+  1) Propagated values
+  2) Training data values
+- We magnitude of these errors are used to adjust the weights in the network
+- Some problems while trying to find "good enough" weights
+  1) (Randomness) Sometimes he accumulated error at a *local minimum* is too large, is best to restart the training
+  2) (Memory) If we have enough *memory* and with not enough data, we might just memorize the training data.
+     Memory=weights. Start using a small network.
+- The ~activation values~ of individual neurons are limited to the range [0,1].
+  - Sum of the activation values of neurons in the previous layer *times* the values of the connecting weights and then
+    Using *sigmoid* function to map the sums to desired range.
+* Book: 2021 | Deep Learning: A Visual Approach          | Andrew Glassner
+  https://nostarch.com/deep-learning-visual-approach
+  https://github.com/blueberrymusic/Deep-Learning-A-Visual-Approach (scikit-learn)
+** Introduction
+- Know, stats (to know how to describe the "patterns" in the data)
+- Know, ~bayes~ (to know the likelihood an algorithm is correct)
+- Know, IT (information theory) to measure kinds of information
+- Do, machine learning classification to explore the data we have before DL
+- Know, ensambles of different ML systems instead of a big one, sometimes is better
+- ~Backpropagation~ (a way of training) and ~Optizers~ (modifies the network numbers)
+- ~Convnet~ (convolution neural networks) made to handle spatial data, like images. Like recognizing objects.
+- ~Autoencoders~ simplify datasets, or clean images (?
+- ~Recurrent Neural Networks~ for sequences (text or audio)
+- ~Attention and Transformers~ to interpret and generate text
+- ~Reinforment Learning~ ?
+- ~Generative Adversarial Networks~ to generate data
+** Part 1
+** 1 An Overview of Machine Learning
+- Our goal (with ML) is to discover *meaningful* information,
+  where is up to us decide what's *meaninful*.
+- ~Expert Systems~: we create rules from what the experts tells us. Feature engineering.
+- ~Supervised Learning~: we provide *labeled* data.
+  When the system gets enough right answers for our needs we can say it is *trained*
+- ~Unsupervised Learning~: it learns about the relationships between the inputs provided.
+  Used for clustering into groups.
+  Used to improve the quality of data.
+  Used for compress data.
+- ~Reinforment Learning~ when we search to optimize (? something, but we don't know how.
+  While we judge how good or bad the algorthim is in relative terms. ("probably good", "better than the last one")
+  It can be always searching with new data, while using the "best" solution found.
+- ~Deep Learning~ uses a series of steps or *layers* for computation
+- Neurons turn input value into a number.
+  Neurons stay the same, what can change is the input and weights
+  Initial weights are random.
+  Loop -> Weights are adjusted carefully by a small ammount. And output is judged.
+  Neurons converge into looking for *features* although we never told him to.
+** 2 Essential Statistics
+* Book: 2020 | Programming ML From Coding to DL          | Paolo Perrotta
+** 1
+- https://news.stanford.edu/2017/11/15/algorithm-outperforms-radiologists-diagnosing-pneumonia/
+  - deep learning

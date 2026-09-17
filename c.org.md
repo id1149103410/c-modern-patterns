@@ -1,4 +1,6 @@
-### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/c.org
+#### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/c.org
+
+---
 
 - c2x https://habr.com/en/company/badoo/blog/512802/
 - clangd

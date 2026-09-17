@@ -1,4 +1,6 @@
-### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/books.org
+#### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/books.org
+
+---
 
 * 02 | Expert C Programming
 ** Introduction

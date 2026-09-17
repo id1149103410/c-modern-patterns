@@ -1,0 +1,211 @@
+- parallel programming https://gfxcourses.stanford.edu/cs149/fall23/
+  - https://www.youtube.com/watch?v=V1tINV2-9p4
+- video 21: What have we lost? https://www.youtube.com/watch?v=7RNbIEJvjUA
+- video 87: Doing with Images Makes Symbols | Alan Kay
+  https://www.youtube.com/watch?v=_oGq1RcM8B0
+  https://www.youtube.com/watch?v=4ffAkshf2n8
+- Zine: Amazing https://archive.org/details/amazing-computing-magazine?page=2
+- Zine: "RUN" https://archive.org/details/run-magazine?page=3
+- Zine: "Dr. Dobb's Journal" https://archive.org/search?query=creator%3A%22Dr.+Dobb%27s+Journal%22
+- Course: Design Patterns in the Real World, an Analysis-Based Approach
+  https://archive.org/details/design-patterns-in-the-real-world-an-analysis-based-approach
+- Channel: Programming Codebases Review https://www.youtube.com/@ants_are_everywhere/videos
+- Interviews: https://www.youtube.com/playlist?list=PLUN7koCjqU7D6CT76Vprf_xLmaInshvGV
+- https://grugbrain.dev/
+- CS173 Brown University - Programming Languages
+  Instructor : Shriram Krishnamurthi
+  https://www.youtube.com/playlist?list=PL-R-PWkyRREf3Zjk6UFI5mhKt9XuLMC3G
+  https://cs.brown.edu/courses/cs173/2012/Videos/
+- https://github.com/mtdvio/every-programmer-should-know
+- https://github.com/chiroptical/ctfp-book-club
+  https://github.com/hmemcpy/milewski-ctfp-pdf
+- Category Theory
+  https://www.youtube.com/playlist?list=PLbgaMIhjbmEnaH_LTkxLI7FMa2HsnawM_
+  https://www.youtube.com/playlist?list=PLbgaMIhjbmElia1eCEZNvsVscFef9m0dm
+- Cursos Uni https://www.youtube.com/channel/UCtUHm20l_zL4u8Q59i3dYow/playlists
+  Cursos UNAM OS https://www.youtube.com/c/SistemasOperativosCienciasUNAM/playlists
+- Courses https://ebookfoundation.github.io/free-programming-books/courses/free-courses-en.html
+- Topics https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-subjects.html
+- Programming Languages https://ebookfoundation.github.io/free-programming-books/books/free-programming-books-langs.html
+- Article: 2014 - Is TDD Dead https://news.ycombinator.com/item?id=24281195
+- Article: Carmack https://web.archive.org/web/20120702231514/http://www.altdevblogaday.com/2012/04/26/functional-programming-in-c/
+- Article: Carmack https://www.gamedeveloper.com/programming/in-depth-functional-programming-in-c-
+- Article: Carmack http://number-none.com/blow/john_carmack_on_inlined_code.html
+- Article: Real Programmer Don't use Pascal https://www.pbm.com/~lindahl/real.programmers.html
+- Course: Cryptography https://crypto.stanford.edu/~dabo/
+- Course: Principles of Digital Communications https://www.youtube.com/playlist?list=PL2AD004D035C24F21
+- Video: Microservices Patterns: https://www.youtube.com/playlist?list=PLzERW_Obpmv81N-F8yBowb_QHvf9ISG7y
+- What every programmer should know about memory, Part 1
+  https://lwn.net/Articles/250967/
+- True Technologist / Interviews
+  https://www.youtube.com/playlist?list=PLYaGSokOr0MO-ly3vKVpxU0Ftvkule8pg
+- Make Better Software: The Training Series / Joel Spolsky
+  https://www.youtube.com/playlist?list=PLXOSex6PRPFN48McdqRkGMLFd9-pov0Fe
+- Blogs: https://github.com/kuchin/awesome-cto
+- https://github.com/mtdvio/every-programmer-should-know
+- Learn Type Theory https://github.com/jozefg/learn-tt
+- Podcast - History of computing https://open.spotify.com/show/1wdCnbj68DbWinQjmEwUaC
+- https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-00-introduction-to-computer-science-and-programming-fall-2008/video-lectures/
+- Continuous Delivery https://www.youtube.com/channel/UCCfqyGl3nq_V0bo64CjZh8g/videos
+- Ask HN: What are some of the best technical talks you've heard?
+  https://news.ycombinator.com/item?id=18217762
+- Structure and Interpretation of a Computer Revolution https://www.youtube.com/playlist?list=PLoRl3Ht4JOcfcnpf79R9f80bqjMvsOpeg
+- https://github.com/dwmkerr/hacker-laws
+- https://github.com/hemanth/functional-programming-jargon
+  https://github.com/jmesyou/functional-programming-jargon.py
+- Course: 2022 - Waterloo - Principles of Programming Languages
+  https://student.cs.uwaterloo.ca/~cs442/W22/notes/
+  https://www.youtube.com/channel/UCnmJoeNk2mrItxXJ2-XOCcQ/videos
+- L01 Functional Programming | UC Berkeley CS 61A, Spring 2010
+  https://www.youtube.com/watch?v=4leZ1Ca4f0g&list=PLhMnuBfGeCDNgVzLPxF9o5UNKG1b-LFY9
+* gamelisp.rs
+  https://gamelisp.rs/reference/overview.html
+* Lisp Cast
+** A Theory of functional programming 0001
+   - Started the podcast as a way to put the ideas of his book out of his head
+** Is Haskell a Procedural Language
+   - Anecdote of working on a system that didn't implement function programming.
+     And was growing "too large".
+     Most of the code was IO.
+   - They weren't doing:
+     1) high order abstractions
+     2) Data abstractions, operating on that data
+     3) Representing things as a pure domain model
+   - They needed to abstract and work with that pure representation and then do a min of IO stuff.
+   - FP is a mindset, distinguishing between
+     - actions (side effects)
+     - calculations
+     - data
+* Video: William Byrd on "The Most Beautiful Program Ever Written" [PWL NYC]
+  https://www.youtube.com/watch?v=OyfBQmvr2Hc
+  - "Programming Should Eat Itself" by Nada Amin
+    https://www.youtube.com/watch?v=SrKj4hYic5A
+* Video Object-Oriented Programming is Bad
+  https://www.youtube.com/watch?v=QM1iUe6IofM
+* Book: Programming with Types
+** 1
+- The Curry-Howard Correspondence
+  https://www.youtube.com/watch?v=GdcOy6zVFC4
+  16:00
+- Propositions as Types - Computerphile
+  Prop = Type
+  https://www.youtube.com/watch?v=SknxggwRPzU
+- Curry-Howard correspondene, aka proofs-as-programs
+  - Show where is a close relationship between *logic* and *type theory*
+- A function can also be interpreted as "typeA *implies* typeB"
+  Given *evicence* of the proposition typeA
+  The function(implication) can produce evidence of the proposition typeB
+- =State Space= of a running program is the combination of all possible
+  values of all its live variables.
+- Benefits of Typing are
+  1) Correctness
+  2) Inmmutability, const, values can be inlined by the compiler
+  3) Encapsulation, private methods or fields, api
+  4) Composability, generic functions
+  5) Readability
+- Being able to interpret code as data and data as code
+  can lead to catastrophic results
+- =Duck Typing= comes from the phrase
+  "If it waddles like a duck and it quacks like a duck, it must be a duck"
+- Type Systems differn in *when* types are checkd and *how strict* the checks are
+  - WHEN Static vs Dynamic
+  - HOW  Strong vs Weak
+PAGE 15/35
+* Book: Head-First Design Patterns
+** Design Principles
+1) Identify the aspects of your application that vary and separate them from what stays the same.
+2) Program to an interface, not an implementation
+** TODO 1 Intro to Design Patterns
+- All paterns provide a way to let "some part of a system vary independently of all other parts"
+- Inheritance, problems:
+  1) Changes of a superclass can unintentionally affect other subclasses
+  2) It's hard to gain knowledge of behaviours
+- Interfaces:
+  1) fly() class method *to* Flyable interface with a fly() method
+  2) problem is that in JAVA, interfaces don't have implementation code. No code reuse.
+** 5 Singleton
+- Violates the single responsability principle
+- Has
+  1) Static method .getInstance()
+  2) class allocated variable (static) to hold the instance of the singleton
+- Easy of accessing as a global variable, with the *lazy* instantiation of a singleton
+- *static* all the things is possible, as long as it is self-contained and has simple initization
+  can get messy
+*** code: enum, thread safe
+#+begin_src java
+public enum Singleton {
+  UNIQUE_INSTANCE; // more useful fields HERE
+}
+public class SingletonClient {
+  public static void main(String[] args) {
+    Singleton singleton = Singleton.UNIQUE_INSTANCE;
+    // use singleton HERE
+  }
+}
+#+end_src
+*** code: lazy code, might bring problems on multi-thread execution
+- *synchronized* to support multithreading, and not have 2 threads enter the method at the same time
+  But it will add unnecesary overhead. After the first call.
+   #+begin_src java
+public class Singleton {
+  private static Singleton uniqueInstance;
+  private Singleton() {}
+  public static synchronized Singleton getInstance() {
+    if (uniqueInstance == null) {
+      uniqueInstance = new Singleton();
+    }
+    return uniqueInstance;
+  }
+}
+#+end_src
+*** code: eager code
+   #+begin_src java
+public class Singleton {
+  private static Singleton uniqueInstance = new Singleton();
+  private Singleton() {}
+  public static synchronized Singleton getInstance() {
+    return uniqueInstance;
+  }
+}
+#+end_src
+*** code: "double-checked locking" volatile, synchronized block
+- volatile, ensures that multple threads handle the variable correctly
+#+begin_src java
+public class Singleton {
+  private volatile static Singleton uniqueInstance;
+  private Singleton() {}
+  public static Singleton getInstance() {
+    if (uniqueInstance == null) { // 1st
+      synchronized (Singleton.class) {
+        if (uniqueInstance == null) { // 2nd
+          uniqueInstance = new Singleton();
+        }
+      }
+    }
+    return uniqueInstance;
+  }
+}
+#+end_src
+* Book: Refactoring: Improving the Design of Existing Code - Martin Fowler
+** 1 Refactoring: A first Example
+49:00
+- "Brevity is the soul of wit, but clarity is the soul of evolvable software."
+- compile-test-commit
+- It's much easier to improve the ~performance~ of a well-factored code base.
+- Refactoring Types:
+ | Extract Function                      | for example, from a case/switch to a function                                                  |
+ | Replace Temp (variable) with Query    | reduces *mutable* parts                                                                        |
+ | Change Function Declaration           | fn name change, or removing a parameter in favor of calling a function. Makes easier to 1). |
+ | Inline Variable                       | same as 2) ?                                                                                   |
+ | Split Loop                            | isolate the accumulation                                                                       |
+ | Slide Statements                      | move declarations of the variable next the loop for easy 1)                                    |
+ | Split Phase                           | divide logic                                                                                   |
+ | Move Function                         |                                                                                                |
+ | Replace Loop with Pipeline            | loop to .map() and friends                                                                     |
+ | Replace Conditional with Polymorphism |                                                                                                |
+- Javascript
+  - Perform a shallow copy, to not modify aPerformance
+    const result = Object.assign({}, aPerformance)
+- Code Style
+  1) Use *result* as the variable name to return from a function
+  2) On dynamically typed languages, keep track of the type of a var by his name
