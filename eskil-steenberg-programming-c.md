@@ -57,9 +57,9 @@ Maintain a consistent vocabulary across your codebase:
 
 #### API Design: Modular design in C
 
-> Start from outside and go in
+> Start from outside and go in:
 
-**Naming files**: 
+**Naming and import("includeing") files**: 
 ```
 
 + Seduce example// Directory: Contains all files that this API has, all started with s_(seduce). 

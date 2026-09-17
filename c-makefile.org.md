@@ -1,0 +1,276 @@
+### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/makefile.org
+
+| gnu make    | https://www.gnu.org/software/make/ |
+| alternative | https://github.com/casey/just                                   |
+
+
+- wiki https://en.wikipedia.org/wiki/Make_(software)
+  - Author: Stuart Feldman
+  - 1976-
+
+- https://github.com/casey/just#what-are-the-idiosyncrasies-of-make-that-just-avoids
+  - Needing to use "$$" to use environment variables (?) in recipes
+- https://swcarpentry.github.io/make-novice/reference.html
+- Template https://github.com/mbcrawfo/GenericMakefile/
+- Practical Makefiles, by example http://nuclear.mutantstargoat.com/articles/make/
+- https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_makefiles.html
+- POSIX Make https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
+- GNU Make https://www.gnu.org/software/make/manual/html_node/index.html#Top
+  - 10.3 Variables Used by Implicit Rules
+    https://www.gnu.org/software/make/manual/html_node/Implicit-Variables.html
+- article 19 https://tech.davis-hansson.com/p/make/
+- examples https://devhints.io/makefile
+- examples https://learnxinyminutes.com/docs/make/
+- tool: linter https://github.com/mrtazz/checkmake
+- extension: https://github.com/mitjafelicijan/makext
+
+* Language
+** Variables
+|-----+-------------------------------------|
+| $@  | target name                         |
+| $<  | 1st prerequisite                    |
+| $^  | all prerequisites                   |
+| j$+ | all prerequisites, with repetitions |
+|-----+-------------------------------------|
+| $?  | invalid - empty string              |
+| $*  | invalid - empty string              |
+|-----+-------------------------------------|
+* Example: some anon makefile - DEBUG flag
+- src/program.c
+  #+begin_src c
+    #include <stdio.h>
+    #include <math.h>
+
+    int
+    main (void) {
+      printf("log of 5: %f\n", log(5.0));
+    }
+  #+end_src
+- Makefile
+#+begin_src makefile
+#!/usr/bin/make -f
+
+# Reassign these as needed
+DEBUG    := 0
+STRIP    := strip
+DESTDIR  := /usr/local/bin
+SANITIZE := address,undefined
+
+CFLAGS   := -std=c99 -Wall -Wextra -Wpedantic
+CPPFLAGS := -Iinclude
+LDFLAGS  := -lm
+
+ifeq ($(DEBUG),1)
+  CFLAGS   += -ggdb -Og -fsanitize=$(SANITIZE)
+else
+  CFLAGS   += -O3 -fwhole-program
+  CPPFLAGS += -DNDEBUG
+endif
+
+SRC_DIR := src/
+OBJ_DIR := obj/
+
+VPATH := $(SRC_DIR) $(OBJ_DIR)
+
+PROGRAM_SRC := program.c
+PROGRAM_OBJ := $(addprefix $(OBJ_DIR),$(PROGRAM_SRC:.c=.o))
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
+    $(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+all: program
+
+program: $(PROGRAM_OBJ)
+    $(CC) $(CFLAGS) -o $@ $+ $(LDFLAGS)
+ifneq ($(DEBUG),1)
+    $(STRIP) $@
+endif
+
+install: program
+    mkdir -p $(PREFIX)$(DESTDIR)
+    install -s -m 755 -t $(PREFIX)$(DESTDIR) $+
+
+uninstall:
+    $(RM) $(PREFIX)$(DESTDIR)/program
+
+$(OBJ_DIR):
+    mkdir -p $@
+
+clean:
+    $(RM) program $(PROGRAM_OBJ)
+    $(RM) -d $(OBJ_DIR)
+
+.PHONY: all clean
+#+end_src
+* Tutorial: makefile tutorial
+  http://makefiletutorial.com/
+- can be more than 1 *target* separated by space (usually 1)
+- the *DEFAULT* target is always the first target
+- use backslash (\) for too long *commands*
+- it knows if a target is out to date (I guess it knows if the file was modified)
+- ~.PHONY~ target is to let make know that is not a file (like for clean)
+- variables can ONLY be strings
+- the implicit command if you not put a command is
+    blah: "cc blah.o -o blah"
+    blah.o: cc -c blah.c -o blah.o
+  .o is implicit if you define blah: alone
+  it accepts CFLAGS
+- Can use wildcards on the dependencies
+  blah: *.c
+- Other wildcards, like in vars use $(wildcard *.c)
+- vpath!???!?!
+- an ~all~ target is just some custom phony one, ommiting the clean part
+- multiple targets
+  - $@ can be used to ID the current target
+  - % is the target wildcard
+- commands, prefixed with @ will not be printed
+- each *command* line runs on a new shell, use (;) and/or (\)
+- ~.DELETE_ON_ERROR:~ will delete the target if a command fails (no default)
+- fails if a command returns 1
+|----+-------------------------------|
+| -k | keep going on errors          |
+| -n | dry run                       |
+| -s | silent command print          |
+| -i | ignore errors                 |
+| -  | add to suppress command error |
+|----+-------------------------------|
+** 5.2 Recipe Echoing
+https://www.gnu.org/software/make/manual/html_node/Echoing.html
+- Adding an @ to a command, like @echo, suppress the print of the command (just the command, not the output)
+** 8.8 The Shell function
+#+begin_src makefile
+all:
+    @echo $(shell ls -la) # replaces new lines with spaces
+#+end_src
+** 9 Arguments to make
+- Can be multiple *targets*
+- --dry-run
+  --touch
+  --old-file
+** 10 Implicit Rules
+- .c   $(CC) -c $(CPPFLAGS) $(CFLAGS)
+- .cpp $(CXX) -c $(CPPFLAGS) $(CXXFLAGS)
+- .o   $(CC) $(LDFLAGS) n.o $(LOADLIBES) $(DLIBS)
+** 10.5 Automatic variables
+- $@ - current target name
+- $? - prerequisits
+- $^ - ? prerequisits
+* DONE Article: A Tutorial on Portable Makefiles
+https://nullprogram.com/blog/2017/08/20/
+- POSIX Make https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
+- GNU Make, on BSD is named *gmake*
+** Example
+  #+begin_src makefile
+.POSIX:
+.SUFFIXES:
+CC     = cc
+CFLAGS = -W -O
+LDLIBS = -lm
+
+all: game
+game: graphic.so physics.o input.o
+    $(CC) $(LDFLAGS) -o game graphics.o physics.o input.o
+graphics.o: graphics.c graphics.h
+physics.o: physics.c physics.h
+input.o: input.c input.h graphics.h physics.h
+clean:
+    rm -f game graphics.o physics.o input.o
+
+.SUFFIXES: .c .o # Adds them to the suffix list
+.c.o:
+    $(CC) $(CFLAGS) -c $<
+  #+end_src
+** Target
+- Build from *dependency trees* constructed from *rules*
+  - Each vertex, is called a *target*
+  - The final product (executable, document, etc) are the tree *roots*
+- The order does NOT matter. The whole file is parsed before actions are taken.
+  - An expected *install:* target should use the *PREFIX* and *DESTDIR* macros
+    - PREFIX should default to /usr/local
+    - DESTDIR is used for staged builds, when is installed on a fake root directory
+  - mostlyclean>clean>distclean
+  - test/check/dist
+  - The first target is the *default target*
+    - It is convention for a phony *all* target to be the default target
+- Targets can be written multiple times to append prerequisites.
+- Targets with no dependencies are human made, like (.c or .h files)
+  - Putting a .h file would make it recompile on changes on .h
+- A target is *out-of-date* if it is older than any of its prerequisites
+- When using *subdirectories*, just include them on the target name.
+- When keeping objects out of the source dir, you can do it (obj/input.o: src/input.c) BUT *inference rules* won't work
+  - Cmake Solves that, along with deps
+- Special Targets
+  - ~.POSIX:~ In order to get POSIX behavior the first line should be
+  - ~.SUFFIXES~ To disable all default *inference rules*
+** Flags
+  - e take macros from the environment
+  - k for "keep going"
+  - j non standard to parallelize the buiild
+** Commands
+  - Each line runs on his own shell, be mindful of cd's
+** Macros
+- Expanded with $(...)
+- CC, CFLAGS: For compiler and compiler flags
+  LDFLAGS: for flags passed to compiler when linking
+  LDLIBS: For flags about libraries when linking
+- ~$<~ macro expands to the prerequisite
+* DONE Video: 2020 - Lecture 8: Metaprogramming
+  https://www.youtube.com/watch?v=_Ms1Z4xfqv4
+  - we generate a *pipeline*
+  - depending on static files
+    | %  | *wildcard* on the target (and deps) |
+    | $* | matches whatever the "%" was        |
+    | $@ | matches the name of the target      |
+  - ~Semantic Versioning~ Major.minor.patch
+** Makefile
+#+begin_src makefile
+  paper.pdf: paper.tex plot-date.png
+       pdflatex.png
+
+  plot-%.png: %.data plot.py
+      ./plot.py -i $*.dat -o $@
+#+end_src
+** plot.py
+note how small is the python code for just a small and powerful library...
+#+begin_src python
+  import matplotlib
+  import matplotlib.pyplot as plt
+  import numpy as np
+  import argparse
+
+  parser = argparse.ArgumentParser()
+  parser.add_argument('-i', type=argparse.FileType('r'))
+  parser.add_argument('-o')
+  args = parser.parse_args()
+
+  data = np.loadtxt(args.i)
+  plt.plot(data[:, 0], data[:, 1])
+  plt.savefig(args.o)
+#+end_src
+* DONE Video: 2019 - Makefiles: 95% of what you need to know
+https://www.youtube.com/watch?v=DtGrdB8wQ_8
+- -MP -MD, flags to be passed to GCC
+- Makefile foreach, patsubst, wildcard, .d
+  #+begin_src makefile
+# generate files that encode make rules for the .h deps
+# generate .d files, includes information for Make
+DEPFLAGS = -MP -MD
+INCDIRS  = . ./include/
+CFLAGS   = $(foreach D,$(INCDIRS),-I$(D))
+CFILES   = $(foreach D$(CODEDIRS),$(wildcard $(D)/*.c))
+OBJECTS  = $(patsubst %c,%,o,$(CFILES))
+DEPFILES = $(patsubst %c,%,o,$(CFILES))
+  #+end_src
+- $(info something hello world)
+* DONE Video: 2016 - Introduction to Make and GNU Autotools | Barry Smith, Argonne National Laboratory
+  https://www.youtube.com/watch?v=WFLvcMiG38w
+  #+begin_src makefile
+OUTPUT_OPTION = -MMD -MP -o $@
+
+SOURCE = ext8.c util8.c
+DEPS   = $(SOURCE:.c=.d)
+OBJS   = $(SOURCE:.c=.o) # replace, like patsubst
+-include ${DEPS}
+  #+end_src
+- add a help:
+- include <filename>

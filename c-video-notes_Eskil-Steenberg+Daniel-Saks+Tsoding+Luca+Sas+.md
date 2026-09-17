@@ -1,0 +1,400 @@
+### source: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/videos.org#L79
+
+
+- Channel. https://www.youtube.com/@antirez/videos
+- Channel: https://www.youtube.com/@Mr4thProgramming/videos
+- 15 | Advice for Writing Small Programs in C  https://www.youtube.com/watch?v=eAhWIO1Ra6M
+- tic-tac toe https://www.youtube.com/watch?v=gCVMkKgs3uQ
+* 16 | How I program C                        | Eskil Steenberg
+00:53:00
+- video https://www.youtube.com/watch?v=443UNeGrFoM
+- uses c89, c99 is too new and broken (fixed on c11)
+- does NOT use: goto, register, do, continue, auto, volatile
+- "ambiguity is the enemy" - in reference to having a programming language that does a thing in 2 lines of code
+** Timestamps
+ 0:00  intro
+5:00  garbage collection is not suitable for high performance scenarios
+6:20  prefer stable & concise language features & technology stack
+8:25  avoid ambiguity
+11:00  don't be "clever"
+11:45  be explicit
+14:40  static-type language can catch more errors
+16:00  early crashes are better than hidden bugs
+17:30  improve your developing tools
+20:20  general naming convention & coding style
+27:20  prefer imperative & sequential code, long functions are OK
+31:40  function naming
+35:20  API design
+36:00  how to organize .h & .c files
+38:40  C & OOP-style APIs
+41:00  void pointer is your friend to hide internal data
+44:18  macros: _FILE__, __LINE_
+49:40  a custom allocator for memory debugging
+53:10  macro utilities for binary data packing/unpacking
+57:10  memory control & pointers
+1:03:00  malloc
+1:06:00  arrays
+1:09:20  struct
+1:11:15  inheritance via C pointer casting
+1:16:35  struct packing, padding, memory alignment
+1:22:55  memory pages, realloc, gflags.exe
+1:33:42  memory caches
+1:42:30  don't store data twice
+1:45:25  trick to reduce allocations: Flexible Array Member
+1:48:30  trick to reduce allocations: joint malloc (dangerous)
+1:50:48  use "stride" for better handling of Array Of Struct (AOS)
+1:53:15  architecture on top of small & flexible primitives
+1:55:45  prefer incremental progress
+2:00:00  fix code ASAP
+2:01:55  UI application design
+2:08:50  Carmack's fast square root algorithm
+2:09:56  magical random number generator
+2:10:30  closing
+** About C++
+  - it tries to be clever
+  - It tries to hide things, not explicit
+  - which is the root of all evil
+  - Examples:
+    - ~operator overloading~
+      eg: on vector multiplication: is it dot product or pairwise multiplication?
+      where i could have used =vector_dot()= and =vector_mul()=
+    - ~overloading~
+      eg: what happens when on an add(X,Y) defined on same types. I mix different types?
+      where I could have used =addf()=, (ME: like in ocaml)
+    - ~on js: undefined field on an object~ the compiler won't complain, it will just return undefined(?)
+** words used for naming things
+  - handle, pointer to opaqe data structure
+  - func, funtion pointer OR function used as function pointer
+  - internal, function internal to a module
+** long functions are good
+  - have more code that "does something"
+  - instead of code that handles code
+** a swedish fighter jet's code has only 1 main(), that calls functions and those functions NEVER call anything else
+  - reduces indirection
+** naming
+  - Have long names, wide code is better, more descriptive
+  - words that complement each other: create/destroy, load,unload
+  - use:
+    - object_action()
+    - module_object_action()
+  - files
+    - s_draw_font.c
+      s_draw_internal.h
+      s_widget_buttons.c
+      s_widgtet_sliders.c
+      seduce.h
+** OO in C
+- other languages try to fool that it is something that has both code and data in it
+  which is not true on modern systems (aka separate memory spaces)
+- object_create()
+  object_do_something()
+- void pointers are your friend
+  - helps creating opaqe types on interfaces (.h) for users of libraries
+  - on the public .h
+    #+begin_src c
+      typedef void RShader
+    #+end_src
+  - on the internal .h
+    #+begin_src c
+      typedef struct {
+        // ...
+      } RShader;
+    #+end_src
+** Macros 00:50:00
+- Doesn't like them
+- One reason to use them is to duplicate A LOT of code for different types
+  - still screws the error messages
+- To create debug logging macros.
+  You can register file/line and create counters for it.
+  for malloc() realloc() free()
+  #define malloc(n) f_debug_mem_malloc(n, __FILE__, __LINE__)
+* 19 | "New" Features in C                    | Daniel Saks
+   https://www.youtube.com/watch?v=ieERUEhs910
+- C++ dev, working also on C
+- 4 Standards C89=C90/C99/C11/C18(bugfix of 11)
+- Reserved identifiers
+  - for global scope, starting with undersore
+  - for all, starting with 2 underscores, or underscore and uppercase
+- C99 boolean type
+- C90 _STDC_
+  C99 _STDC_VERSION_
+- C99 long long
+- C99 <stdint.h> for exact length ints
+- C90 you couldn't declare after the first line
+     for loop variables declared at the beginning
+  C99 relaxed it, and allows declaration after
+     for loop variables declared inplace
+- C99 inline for functions
+- C99 ~compound literals~, where rational is a typedef struct with 2 members
+  (rational){1,2}
+  (int [m]){8,6,3,1,2,3,4,5,6}
+  (int []){8,6,3,1,2,3,4,5,6}
+- C99 ~designated initializers~, nice for unions or structs (to avoid confusion) or arrays
+  glop g1 = { .i = 10}
+  glop g2 = { .d = 12.3 }
+  int x[10] = { 0, 0, 0, 8, 0, 0, 0,  2}
+  int x[10] = { [3] = 8, [7] = 2 }
+- C99 ~variable length arrays~ VLAs, declaring and as parameters
+  void f(size_t m, size_t n) {
+    int x[m][n];
+- C99 ~Flexible Array Members~, useful for packet-like structures
+  struct packet {
+    header h;
+    data d[]; // THIS
+  }
+* 21 | Checking out raylib                    | Tsoding
+
+https://www.youtube.com/watch?v=fHojJ9Nxb0E
+
+ 03:22:00 START
+
+- is like an engine as a library
+- a zero initialized structure, is a convention that should be handled
+  by the functions handling them
+  = {0}
+
+** Example: minimal example
+
+#+begin_src c
+  #include "raylib.h"
+  #define SCREEN_WIDTH 800
+  #define SCREEN_HEIGHT 600
+  int main(void) {
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib probe");
+    while (!WindowShouldClose()) {
+      BeginDrawing();
+      CLearBackground(BLACK);
+      EndDrawing();
+    }
+    return 0;
+  }
+#+end_src
+
+* 21 | Modern C and What We Can Learn From It | Luca Sas
+   https://www.youtube.com/watch?v=QpAhX-gsHMs
+- WG14 Standarization Group https://www.open-std.org/jtc1/sc22/wg14/
+- designated initializers, initialize everything else to 0
+- header macro to differentiate between c++ and c
+  __cplusplus
+- Instead using malloc/fopen ask for allocators iocallbacks
+- static_assert()
+- Example: using sokol gfx, we describe a pipeline, we initialize the others to 0/default
+  #+begin_src c
+    sg_pipeline_desc pip_desc = {
+      .layout = {
+        .buffers[0].stride = 28,
+        .attrs = {
+          [ATTR_vs_position].format = SG_VERTEXFORMAT_FLOAT3,
+          [ATTR_vs_color0].format   = SG_VERTEXFORMAT_FLOAT4
+        }
+      },
+      .shared = shd,
+      .index_type = SG_INDEXTYPE_UINT16,
+      .depth_stencil = {
+        .depth_compare_func = SG_COMPAREFUNC_LESS_EQUAL,
+        .depth_write_enagled = true,
+      }
+      .rasterizer.cull_mode = SG_CULLMODE_BACK,
+      .rasterizer.sample_count = SAMPLE_COUNT,
+      .label = "cube-pipeline"
+    };
+  #+end_src
+- C11 =_Generic= and Overloading
+  #define min(a,b) _Generic((a), float. minf(a,b), int: mini(a,b))
+- C11 atomics, thread_local
+- defer macro
+  #+begin_src c
+    #define macro_var(name) concat(name, __LINE__)
+    #define defer(start,end) for (     \
+       int macro_var(_i_) = (start,0); \
+       !macro_var(_i_);                \
+       (macro_var(_i_) +=, end)
+    #define profile defer(profile_begin(), profile_end())
+    profile
+    {
+     ...
+    }
+    #define gui defer(gui_begin(),gui_end()
+    gui
+    {
+      ...
+    }
+  #+end_src
+- scope macro
+  #+begin_src c
+    file_handle_t file = file_open(filename, file_mode_read);
+    scope(file_close(file))
+    {
+      ...
+    }
+  #+end_src
+- Unions: We can refer to the same thing in different ways
+  #+begin_src c
+    typedef union hmm_vec2
+    {
+      struct { float X, Y; };
+      struct { float U, V; };
+      struct { float Left, Right; };
+      struct { float Width, Height; };
+      float Elements[2];
+    } hmm_vec2;
+  #+end_src
+- Error: return a struct with a *valid* field
+* 21 | Searching duplicate files with C       | Tsoding
+00:53:00
+https://www.youtube.com/watch?v=bpCJf67e1lI
+- Task: Hashing each file
+- you can use "(void) varname" to silence warning of unused variable.
+- #include <dirent.h>
+  - =opendir()=
+  - =readdir()= - returns the next entry within the directory
+  - =closedir()=
+- unix filenames can only be upto 256
+- we ignore "." and ".."
+  if ((strcmp(ent->d_name, ".") != 0) && strcmp(ent->d_name, "..") != 0)
+- string literals are null terminated
+  #+begin_src c
+    #define PATH_SEP "/" // string literals come with the null termitor character
+    #define PATH_SEP_LEN (sizeof(PATH_SEP) - 1)
+  #+end_src
+- join_path function, a very c way to append strings with =malloc/memcpy= and pointer adding
+  #+begin_src c
+    char *join_path(const char *base, const char *file) {
+      size_t base_len = strlen(base);
+      size_t file_len = strlen(file);
+
+      char *begin = malloc(base_len + file_len + PATH_SEP_LEN + 1);
+      assert(begin != NULL);
+
+      char *end = begin;
+      memcpy(end, base, base_len);
+      end += base_len;
+      memcpy(end, PATH_SEP, PATH_SEP_LEN);
+      end += PATH_SEP_LEN;
+      memcpy(end, file, file_len);
+      end += file_len;
+      *end = '\0';
+
+      return begin;
+    }
+  #+end_src
+- to be able to perform an action on each file, WITHOUT interacting with the recursion of readdir()
+  we creates a wrapper API struct that keep an array of DIR* around
+* 21 | Using C instead of Bash                | Tsoding
+- =fopen()= returns NULL on error
+- =fclose()=
+- =fprintf= (SINK,STRING)
+  - you can pass to the first argument the FILE *value returned by fopen()
+- assert(0 && "TODO: description");
+- =fork()=
+  - returns
+    - to the parent the child id
+    - to the child 0
+    - or negative on error
+- =wait()=
+  - waits for state changes in a child of the calling process
+  - returns the pid of the process that changed state
+- =execvp()=
+  - the "p" means that it will look into PATH
+  - replaces the current process image with the one passed to it
+  - you NEED to run in on a fork()ed child
+  - 2nd argument list must end with NULL
+- for(; *argv != NULL; argv++) can have a missing initialization parameter
+*** shlex
+- strchr()
+  - locates a character in string
+- python shlex.quote, escapes a string to be parsed by a command
+- we do string concatenation by
+  - doing a single memory allocation of an array of charj
+  - and providing an API to memcpy into it cstrings
+- gdb
+  > break shell_escape
+  > run
+  > tui enable
+  > n
+* 21 | Minicel                                | Tsoding
+** TODO 1 https://www.youtube.com/watch?v=HCAgvKQDJng
+01:26:00
+- uses ~size_t~ for anything related to array indices
+- Implementation of C++'s StringView in C https://github.com/tsoding/sv
+- fwrite()
+- fread() reads elements, not bytes
+- using =goto= to return an error, a way to imitate part of Go's "defer"
+  #+begin_src c
+    char* slurp_file(const char *file_path, size_t *size) {
+      FILE *f = fopen(file_path, "rb");
+      char *buffer = NULL;
+      if (f == NULL) goto error;
+      if (fseek(f, 0, SEEK_END) < 0) goto error;
+
+      long m = ftell(f);
+      if (m < 0) goto error;
+
+      buffer = malloc((sizeof char) * m);
+      if (buffer == NULL) goto error;
+
+      if (fseek(f, 0, SEEK_SET) < 0) goto error;
+      size_t n = fread(buffer, 1, m, f);
+      assert(n == (size_t) m);
+
+      if (ferror(f)) goto error;
+      if (size) *size = n;
+      fclose(f);
+
+      return buffer;
+
+     error:
+      if (f)      fclose(f);
+      if (buffer) free(buffer);
+      return NULL;
+    }
+  #+end_src
+- reading a whole file into a string
+  - stat() is not windows portable
+  - ftell - to take the value of the cursor
+    fseek - to put the cursor to the end of the file
+- suffixing ~union~ with _As, AND naming the structure field ~as~, makes it so code will look like this
+  #+begin_src c
+  Cell.as.text;
+  Cell.as.number;
+  Cell.as.expr;
+  #+end_src
+- When creating unions, make sure that a ~zero initialization~ ({0} or memset()) still gives a valid results for all cases
+- using *unions*, *enums* and *structs* together
+  #+begin_src c
+    typedef enum {
+      CELL_KIND_TEXT = 0,
+      CELL_KIND_NUMBER,
+      CELL_KIND_EXPR,
+    } Cell_Kind;
+
+    typedef union {
+      String_View text;
+      double number;
+      Expr expr;
+    } Cell_As;
+
+    typedef struct {
+      Cell_Kind kind;
+      Cell_As as;
+    } Cell;
+  #+end_src
+- using *macros* to unpack, a hex color (#0xFFAABBCC) into 4 arguments
+  #+begin_src c
+    #define UNHEX(c) \
+      ((c >> 8 * 0) & 0xFF), \
+      ((c >> 8 * 1) & 0xFF), \
+      ((c >> 8 * 2) & 0xFF), \
+      ((c >> 8 * 3) & 0xFF), \
+  #+end_src
+- using *macros* to format
+  #+begin_src c
+    typedef struct {
+      int x, y;
+    } Vec2;
+
+    #define V2_Fmt "(%d, %d)"
+    #define V2_Arg(v) v.x, v.y
+  #+end_src
+- strtod() - string to double
+  strtof() - string to float

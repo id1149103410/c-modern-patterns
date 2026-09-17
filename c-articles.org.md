@@ -1,0 +1,38 @@
+### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/articles.org
+
+- https://sqlite.org/whyc.html
+- 11 Object-oriented design patterns in the kernel, part 1 https://lwn.net/Articles/444910/
+- sockets https://roscas.github.io/reseau/Linux-Sockets-CheatSheet.html
+- 2010 https://web.archive.org/web/20100715074224/https://www.securecoding.cert.org/confluence/display/seccode/STR05-C.+Use+pointers+to+const+when+referring+to+string+literals
+- https://www.deusinmachina.net/p/c-strings-and-my-slow-descent-to
+- Few lesser known tricks, quirks and features of C https://blog.joren.ga/less-known-c
+- The “Build Your Own Redis” Book Is Completed https://news.ycombinator.com/item?id=34572263
+- Article: 2016 https://matt.sh/howto-c
+- Article: https://suckless.org/coding_style/
+- Article: 2021 - unfashionable C
+  https://www.yodaiken.com/2021/05/21/your-computer-is-a-fast-pdp-11-and-more-on-c-the-c-standard-and-computer-architecture/
+- Article: 2018 - C Is Not a Low-level Language
+  https://queue.acm.org/detail.cfm?id=3212479
+* Article: C Runtime Overhead
+  http://ryanhileman.info/posts/lib43
+  https://news.ycombinator.com/item?id=29783585
+- overhead is 9ms of linker and glibc
+- strace -tt shows time in microseconds
+- baseline time without stdlib 0.5ms (-ffreestanding -nostdlib)
+  #+begin_src c
+    // gcc -m32 -ffreestanding -nostdlib
+    void _start() {
+        /* exit system call */
+        asm("movl $1,%eax;"
+            "xorl %ebx,%ebx;"
+            "int  $0x80"
+        );
+    }
+  #+end_src
+- =Bloom filter=, to test SET belongs, for big datasets
+  gives false-positive
+  do not gives false-negatives
+  https://en.wikipedia.org/wiki/Bloom_filter
+- 1ms in linking
+- 5ms in glibc load
+- portable startime libc https://github.com/lunixbochs/lib43

