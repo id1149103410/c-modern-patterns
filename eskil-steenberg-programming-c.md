@@ -26,6 +26,34 @@ The compiler should be viewed as an ally, not an adversary. When it produces err
 
 ### Naming Conventions and Code Organization
 
+#### API Design: Modular design in C
+
+> Start from outside and go in
+
+**Naming files**: 
+```
+
++ Seduce example// Directory: contains all files that the API has started with s_(for this example)
+  |--- .
+  |--- ..   
+  |--- s_draw_framebuffer.c
+  |--- s_draw_new.c
+  |--- s_draw_primitive.c
+  |--- s_draw.c
+  |--- s_draw_internal.h // _INTERNAL.H: file that contains something that you want to comunicate within this module and the external shouldn't know about that
+  |
+  |--- s_widget_radial.c
+  |--- s_widget_visualizers.c
+  |--- s_widget_visualizers_internal.h // _INTERNAL.H: file that contains something that you want to comunicate within this module and the external shouldn't know about that
+  |--- s_widget.c
+  |
+  |--- s_text_widget.c
+  |--- s_text_select.c
+  |--- s_text.c
+  |
+  +--- seduce.h  // EXTERNAL FILE INTERFACE - just one .h file that has loads of functionalities that are defined in the .c files.
+```
+
 #### Systematic Naming Patterns
 
 Effective naming follows consistent patterns that make code self-documenting:
